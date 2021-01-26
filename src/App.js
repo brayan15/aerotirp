@@ -1,24 +1,17 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.scss'
+import { Layout } from 'antd'
+import Footer from './components/footer'
+import './styles/main.scss'
 
 function App() {
   return (
     <div className='app'>
-      <header className='app-header'>
-        <img src={logo} className='app-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='app-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout className='app__layout'>
+        <Layout.Content className='container'>
+          <p>AeroTrip</p>
+        </Layout.Content>
+        <Footer />
+      </Layout>
     </div>
   )
 }
