@@ -1,3 +1,52 @@
 .tabs {
   width: 100%;
+  background: $athens-gray;
+  padding: 20px;
+
+  &__flight-location {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__flight-from,
+  &__flight-to {
+    padding: 0 2px;
+    width: 100%;
+  }
+
+  &__flight-cta-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__flight-cta-button {
+    align-self: flex-end;
+  }
+
+  &__flight-traveling-container,
+  &__flight-time-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__flight-traveling-input,
+  &__flight-time-input {
+    align-self: flex-end;
+  }
+
+  @media (max-width: $max-md) {
+    &__flight-where-container,
+    &__flight-traveling-container,
+    &__flight-time-container {
+      margin-bottom: 10px;
+    }
+
+    &__flight-location {
+      flex-direction: column;
+    }
+
+    &__flight-from {
+      margin-bottom: 10px;
+    }
+  }
 }

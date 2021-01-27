@@ -1,19 +1,24 @@
 import React from 'react'
-import { Tabs, Row, Col } from 'antd'
+import { Row, Col, Divider, Typography } from 'antd'
+import BookingTabs from '../../../components/booking-tabs'
+import FlightCard from '../../../components/flight-card'
 
-const { TabPane } = Tabs
+const { Title, Paragraph } = Typography
 
 const Home = () => (
-  <Row className='w-100' gutter={24}>
-    <Col span={20} offset={2}>
-      <Tabs defaultActiveKey='1' className='tabs'>
-        <TabPane tab='Book your flight' key='1'>
-          Content of Tab Pane 1
-        </TabPane>
-        <TabPane tab='My trips' key='2'>
-          Content of Tab Pane 2
-        </TabPane>
-      </Tabs>
+  <Row className='w-100'>
+    <Col xs={{ span: 24 }} xl={{ span: 20, offset: 2 }}>
+      <Typography className='main-title'>
+        <Title>Aerotrip Airline</Title>
+        <Paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores, aut
+          consectetur debitis dolorem eligendi, esse facilis laboriosam officia perspiciatis quasi
+          qui? Doloremque eligendi esse facilis, fugit impedit in velit?
+        </Paragraph>
+      </Typography>
+      <BookingTabs />
+      <Divider orientation='left'>Available Flights</Divider>
+      <FlightCard />
     </Col>
   </Row>
 )
