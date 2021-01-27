@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Layout.Footer className='footer'>
       <p className='footer__copyright'>
-        AeroTrip ©2020 Created by <strong>Bryan Lara</strong>
+        AeroTrip ©2021 Created by <strong>Bryan Lara</strong>
       </p>
     </Layout.Footer>
   )
