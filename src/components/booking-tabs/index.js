@@ -69,7 +69,7 @@ const BookingTabs = () => {
      const localBookings = JSON.parse(localStorage.getItem('bookings')) || []
 
     dispatch(fetchBookings(localBookings))
-  }, [])
+  }, []) //eslint-disable-line
 
   return (
     <Tabs defaultActiveKey='1' className='tabs'>
