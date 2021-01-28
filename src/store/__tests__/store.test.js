@@ -3,7 +3,8 @@ import mockData from '../flights/mock-data'
 
 const expectedState = {
   flights: {
-    ...mockData
+    isLoading: false,
+    data: { ...mockData }
   }
 }
 

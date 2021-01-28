@@ -19,5 +19,8 @@ export type FlightT = {
 }
 
 export type FlightStateT = {
-  [city: string]: FlightT
+  isLoading: boolean,
+  data: {
+    [city: string]: FlightT
+  }
 }

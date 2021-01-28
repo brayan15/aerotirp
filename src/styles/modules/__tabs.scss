@@ -34,6 +34,11 @@
     align-self: flex-end;
   }
 
+  &__flight-to-option,
+  .ant-select-selection-item {
+    text-transform: capitalize;
+  }
+
   @media (max-width: $max-md) {
     &__flight-where-container,
     &__flight-traveling-container,

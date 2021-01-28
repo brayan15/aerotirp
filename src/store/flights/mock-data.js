@@ -60,7 +60,7 @@ const mockData = {
     description:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab beatae, consectetur culpa',
     country: 'italy',
-    city: 'roma',
+    city: 'rome',
     slots: [
       { time: '9 AM', price: '5000' },
       { time: '11 AM', price: '4000' },
