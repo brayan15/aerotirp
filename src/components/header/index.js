@@ -31,7 +31,7 @@ const Header = () => {
 
       return dispatch(fetchFlights(result))
     })
-  }, [])
+  }, []) //eslint-disable-line
 
   return (
     <Layout.Header className='header'>
