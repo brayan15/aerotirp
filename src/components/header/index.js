@@ -4,11 +4,15 @@ import { Badge, Col, notification, Row } from 'antd'
 import { BellTwoTone } from '@ant-design/icons'
 import { Layout } from 'antd'
 import type { BookingT } from '../../store/booking/types'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getBookings } from '../../store/booking/selectors'
+import useFetchFlights from '../../hooks/useFetchFlights'
+import { errorFetchFlights, fetchFlights, loadingFetchFlights } from '../../store/flights/actions'
 
 const Header = () => {
-  const bookings:Array<BookingT> = useSelector(getBookings)
+  const dispatch = useDispatch()
+  const bookings: Array<BookingT> = useSelector(getBookings)
+  const [fetchingFlights] = useFetchFlights()
 
   const openNotification = () => {
     notification.info({
@@ -16,6 +20,18 @@ const Header = () => {
       description: `You have ${bookings.length} pre-bookings, go to My trips section to get more details`
     })
   }
+
+  React.useEffect(() => {
+    dispatch(loadingFetchFlights())
+
+    fetchingFlights().then(result => {
+      if (result.hasError) {
+        return dispatch(errorFetchFlights())
+      }
+
+      return dispatch(fetchFlights(result))
+    })
+  }, [])
 
   return (
     <Layout.Header className='header'>

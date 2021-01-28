@@ -1,11 +1,10 @@
 import store from '../index'
-import mockData from '../flights/mock-data'
 
 const expectedState = {
   bookings: [],
   flights: {
     isLoading: false,
-    data: { ...mockData }
+    data: {}
   }
 }
 
