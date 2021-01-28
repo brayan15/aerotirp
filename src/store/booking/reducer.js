@@ -1,7 +1,7 @@
 import type { BookingStateT } from './types'
 import type { ActionT } from '../types'
 import { DELETE_BOOKING, FETCH_BOOKINGS, SET_BOOKING } from './actions'
-import normalizeBookings from './helpers'
+import normalizeBookings, { normalizeDeleteBooking } from './helpers'
 
 const initialState = []
 
@@ -12,7 +12,7 @@ const reducer = (state: BookingStateT = initialState, { type, payload }: ActionT
     case SET_BOOKING:
       return normalizeBookings(state, payload)
     case DELETE_BOOKING:
-      return state
+      return normalizeDeleteBooking(state, payload)
     default:
       return state
   }

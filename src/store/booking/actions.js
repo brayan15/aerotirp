@@ -15,7 +15,7 @@ export const fetchBookings = (bookings: Array<BookingT>) => ({
   payload: bookings
 })
 
-export const deleteBooking = (booking: BookingT) => ({
+export const deleteBooking = (bookingId: string) => ({
   type: DELETE_BOOKING,
-  payload: booking
+  payload: bookingId
 })

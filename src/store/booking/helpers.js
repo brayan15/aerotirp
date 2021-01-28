@@ -9,4 +9,13 @@ const normalizeBookings = (state: Array<BookingT>, payload: BookingT) => {
   return bookings
 }
 
+export const normalizeDeleteBooking = (state: Array<BookingT>, payload: string) => {
+  //$FlowFixMe
+  const bookings = state.filter((booking: BookingT) => booking.id !== payload)
+
+  localStorage.setItem('bookings', JSON.stringify(bookings))
+
+  return bookings
+}
+
 export default normalizeBookings
