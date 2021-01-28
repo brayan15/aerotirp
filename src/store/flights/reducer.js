@@ -1,7 +1,8 @@
 // @flow
-import type { ActionT, FlightStateT } from './types'
+import type { FlightStateT } from './types'
 import { ERROR_FETCH_FLIGHTS, FETCH_FLIGHTS, LOADING_FETCH_FLIGHTS } from './actions'
 import mockData from './mock-data'
+import type { ActionT } from '../types'
 
 const initialState = {
   isLoading: false,

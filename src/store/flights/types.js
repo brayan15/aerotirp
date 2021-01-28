@@ -1,10 +1,5 @@
 // @flow
 
-export type ActionT = {
-  type: string,
-  payload: any
-}
-
 export type SlotsT = {
   time: string,
   price: string

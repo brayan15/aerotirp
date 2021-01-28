@@ -14,7 +14,14 @@ export const getTimeSlots = () =>
   createSelector(
     getFlightsData,
     (_, city) => city,
-    (flights, city) => flights[city]?.slots || []
+    (flights, city: string) => flights[city]?.slots || []
   )
 
 export const getCities = createSelector(getFlightsData, flights => Object.keys(flights))
+
+export const getCountries = () =>
+  createSelector(
+    getFlightsData,
+    (_, city) => city,
+    (flights, city: string) => flights[city]?.country || ''
+  )

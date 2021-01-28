@@ -1,9 +1,13 @@
 // @flow
 import React from 'react'
-import { Tabs, Row, Col, Button, Input, InputNumber, Select, notification } from 'antd'
+import { Tabs, Row, Col, Button, Input, InputNumber, Select, notification, Empty } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCities, getTimeSlots } from '../../store/flights/selectors'
+import { getCities, getCountries, getTimeSlots } from '../../store/flights/selectors'
 import type { SlotsT } from '../../store/flights/types'
+import getUniqueId from '../../utlis/unique-id'
+import { fetchBookings, setBooking } from '../../store/booking/actions'
+import type { BookingT } from '../../store/booking/types'
+import { getBookings } from '../../store/booking/selectors'
 
 const { TabPane } = Tabs
 const { Option } = Select
@@ -22,8 +26,11 @@ const BookingTabs = () => {
   const [traveling, setTraveling] = React.useState()
   const cities: Array<string> = useSelector(getCities)
   const getTime = getTimeSlots()
+  const countries = getCountries()
   const timeSlot: Array<SlotsT> = useSelector(state => getTime(state, city))
-  const dispatch = useDispatch() // eslint-disable-line
+  const country: string = useSelector(state => countries(state, city))
+  const bookings:Array<BookingT> = useSelector(getBookings)
+  const dispatch = useDispatch()
 
   const onCityChange = (cityValue: string) => {
     setCity(cityValue)
@@ -41,19 +48,28 @@ const BookingTabs = () => {
   }
 
   const onBookingClick = () => {
-    // const getPrice = timeSlot.filter((slot: SlotsT) => slot.time === time)
-
     if (!city || !time || !traveling) {
       return openNotification('error')
     }
 
+    const getPrice = timeSlot.filter((slot: SlotsT) => slot.time === time)
+
     setCity()
     setTime()
-    setTraveling()
-    //dispatch(setBooking({city, traveling, ...getPrice[0]}))
+    dispatch(
+      //$FlowFixMe
+      setBooking({ city, traveling, status: 'DRAFT', country, ...getPrice[0], id: getUniqueId() })
+    )
 
     return openNotification('success')
   }
+
+  React.useEffect(() => {
+    //$FlowFixMe
+     const localBookings = JSON.parse(localStorage.getItem('bookings')) || []
+
+    dispatch(fetchBookings(localBookings))
+  }, [])
 
   return (
     <Tabs defaultActiveKey='1' className='tabs'>
@@ -143,13 +159,17 @@ const BookingTabs = () => {
               className='tabs__flight-cta-button w-100'
               onClick={onBookingClick}
             >
-              Booking
+              Pre-Booking
             </Button>
           </Col>
         </Row>
       </TabPane>
       <TabPane tab='My trips' key='2'>
-        List of bookings
+        {bookings.length? (
+          bookings.map((booking: BookingT) => (
+            <p>{booking.city}{booking.country}{booking.traveling}</p>
+          ))
+        ): <Empty className='tabs__empty' />}
       </TabPane>
     </Tabs>
   )

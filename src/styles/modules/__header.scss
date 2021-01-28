@@ -9,9 +9,13 @@
     color: $white;
   }
 
-  &__search-wrapper {
+  &__bell-wrapper {
     align-items: center;
     display: flex;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 576px) {
