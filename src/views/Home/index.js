@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Divider, Typography } from 'antd'
-import BookingTabs from '../../../components/booking-tabs'
-import FlightCard from '../../../components/flight-card'
+import BookingTabs from '../../components/booking-tabs'
+import FlightCard from '../../components/flight-card'
 
 const { Title, Paragraph } = Typography
 
